@@ -25,7 +25,7 @@ const Navbar = () => {
     const picture = user?.picture
     const location = useLocation();
 
-    const filteredUser = usuario.length > 0 ? usuario.find(usr => usr.email === user?.email) : []
+    const filteredUser = usuario?.length > 0 ? usuario?.find(usr => usr.email === user?.email) : []
     console.log("que es estooo", filteredUser)
 
 

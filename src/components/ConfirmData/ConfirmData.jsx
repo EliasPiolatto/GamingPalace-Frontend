@@ -12,7 +12,7 @@ export const ConfirmData = () => {
     const dispatch = useDispatch()
     const { user } = useAuth0()
     const usuario = useSelector(state => state.users)
-    const filteredUser = usuario.length > 0 ? usuario.filter(usr => usr.email == user?.email) : []
+    const filteredUser = usuario?.length > 0 ? usuario?.filter(usr => usr.email == user?.email) : []
     const [nombre, setNombre] = useState("")
     const [email, setEmail] = useState("")
     const [open, setOpen] = useState(true);
