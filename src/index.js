@@ -8,7 +8,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { persistor, store } from './Redux/store';
 import Auth0ProviderWithHistory from './Auth0Provider/Auth0Provider';
 import axios from 'axios';
-axios.defaults.baseURL = 'https://gpback-production.up.railway.app/'
+// axios.defaults.baseURL = 'https://gpback-production.up.railway.app/'
+axios.defaults.baseURL = 'gaming-palace-backend-8iadqiz87-eliaspiolatto.vercel.app'
 
 
 
