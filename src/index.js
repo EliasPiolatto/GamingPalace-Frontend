@@ -9,7 +9,7 @@ import { persistor, store } from './Redux/store';
 import Auth0ProviderWithHistory from './Auth0Provider/Auth0Provider';
 import axios from 'axios';
 // axios.defaults.baseURL = 'https://gpback-production.up.railway.app/'
-axios.defaults.baseURL = 'https://gaming-palace-backend.vercel.app/'
+axios.defaults.baseURL = 'https://gamingpalace-back.onrender.com'
 
 
 
