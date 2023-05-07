@@ -10,7 +10,7 @@ import './OrderList.css'
 function validateForm(input){
     const error = {};
     if(!input.name.length) error.name = <span style={{color:"red"}}>Name is required</span>;
-    if(!input.adress.length) error.adress = <span style={{color:"red"}}>Address is required</span>;
+    if(!input.adress?.length) error.adress = <span style={{color:"red"}}>Address is required</span>;
     if(!input.city.length) error.city = <span style={{color:"red"}}>City is required</span>;
     if(!input.postalCode.length) error.postalCode = <span style={{color:"red"}}>Postal code is required</span>;
     
