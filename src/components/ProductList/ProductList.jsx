@@ -6,7 +6,8 @@ import "./ProductList.css";
 import { getAllProducts, getCart, getFavs, getUser } from '../../Redux/Actions/actions';
 import ContainerCards from '../Cards/ContainerCards';
 import { Searchbar } from '../Searchbar/Searchbar';
-import { useAuth0 } from '@auth0/auth0-react';
+// import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth } from '../../context/AuthContext';
 
 
 const ProductList = () => {
@@ -15,7 +16,7 @@ const ProductList = () => {
   const dispatch = useDispatch()
   const products = useSelector((state) => state.allProducts)
   
-  const {user} = useAuth0();
+  const {user} = useAuth();
   const users = useSelector(state=> state?.users);
   const findUser = users > 0 ? users?.find(us => us?.email === user?.email) : []
 

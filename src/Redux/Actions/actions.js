@@ -143,6 +143,21 @@ export const newUser = (user) => {
 	} catch (error) {
 		console.log((error, "Llena los campos pues"));
 	}
+};
+
+	export const loginUser = (infoLogin) => {
+		try {
+			return async function (dispatch) {
+				const logUser = await axios.post(`/users/login`, infoLogin)
+				return dispatch({
+					type: GET_USER,
+					payload: logUser.data
+				})
+			}
+		} catch (error) {
+			console.log((error, "Llena los campos pues"));
+		}
+	};
 	// return async (dispatch) => {
 	// 	try {
 	// 	  const response = await fetch(`/users`, {
@@ -166,7 +181,7 @@ export const newUser = (user) => {
 	// 	  return { error: 'Error de red' };
 	// 	}
 	//   };
-}
+
 
 
 export const getUser = () => {

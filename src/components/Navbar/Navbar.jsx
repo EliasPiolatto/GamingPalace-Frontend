@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { TfiAlignJustify } from "react-icons/tfi";
 import { FiShoppingCart } from "react-icons/fi"
@@ -9,8 +9,9 @@ import "../Navbar/Navbar.css"
 import { useSelector } from "react-redux";
 import { TfiHeart } from "react-icons/tfi";
 import { BiLogOut } from "react-icons/bi"
-import { useAuth0 } from "@auth0/auth0-react";
+// import { useAuth0 } from "@auth0/auth0-react";
 import { Avatar } from "@mui/material";
+import { useAuth } from "../../context/AuthContext";
 
 
 
@@ -20,14 +21,14 @@ const Navbar = () => {
     const shopCart = useSelector(state => state.shopCart)
     const usuario = useSelector(state => state.users)
     const favourites = useSelector(state => state.favourites);
-    const { loginWithRedirect, logout } = useAuth0()
-    const { user, isAuthenticated } = useAuth0()
-    const picture = user?.picture
+    // const { loginWithRedirect, logout } = useAuth0()
+    const { user, logout } = useAuth()
+
+    const picture = user?.photoURL
     const location = useLocation();
 
     const filteredUser = usuario?.length > 0 ? usuario?.find(usr => usr.email === user?.email) : []
-    console.log("que es estooo", filteredUser)
-
+ 
 
     const linkStyle = { 
         "textDecoration": "none",
@@ -40,7 +41,8 @@ const Navbar = () => {
     }
 
 
-    // console.log(filteredUser);
+    // console.log(user.emailVerified, "anonymous");
+    // console.log(user,"usuario...")
 
     return (
         <nav className="navbarContainer">
@@ -77,7 +79,7 @@ const Navbar = () => {
                             </div>
 
 
-                            {isAuthenticated && filteredUser?.role === "admin" ?  <div className="menu_item">
+                            {user && filteredUser?.role === "admin" ?  <div className="menu_item">
 
                                 <Link to="/admin-dashboard" style={linkStyle}><div className="items">Admin Dashboard</div></Link>
                             </div> : <div></div>}
@@ -85,29 +87,31 @@ const Navbar = () => {
 
                             <div className="container_icons">
 
-                                {!isAuthenticated ? <div></div> : <div className="shopping_cart">
+                                {user ? <div className="shopping_cart">
                                     <Link to="/favourites" style={linkStyle}><div className="">
                                         <TfiHeart />
                                         <span className="length_cart">{favourites.length}</span>
                                     </div></Link>
-                                </div>}
+                                </div> : <div></div>}
 
-                                {!isAuthenticated ? <div></div> : <div className="shopping_cart">
+                                {user ? <div className="shopping_cart">
                                     <Link to="/shopcart" style={linkStyle} ><FiShoppingCart /></Link>
                                     <span className="length_cart">{shopCart.length}</span>
-                                </div>}
+                                </div> : <div></div>}
 
                                 <div className="shopping_cart">
 
-                                    {isAuthenticated ? <Link to="/dashboard" style={linkStyle}><span style={linkStyle}> <Avatar src={picture}>GP</Avatar></span></Link> :
-                                        <span className="login" style={linkStyle} onClick={() => loginWithRedirect()}>Log In</span  >
-                                    }</div>
+                                    {user ? // <span className="login" style={linkStyle} onClick={() => loginWithRedirect()}>Log In</span  >
+                                        <Link to="/dashboard" style={linkStyle}><span style={linkStyle}> <Avatar src={picture}></Avatar></span></Link> :
+                                        <Link to="/login"><span className="login" style={linkStyle}>Log In</span  ></Link>
+                                    }
+                                    </div>
 
 
 
-                                {!isAuthenticated ? <div></div> : <div className="shopping_cart">
+                                {user ? <div className="shopping_cart">
                                     <span style={linkStyle} onClick={() => logout()}><BiLogOut /></span>
-                                </div>}
+                                </div> : <div></div>}
                             </div>
 
 

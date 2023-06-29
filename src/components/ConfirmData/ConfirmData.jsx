@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+// import { useAuth0 } from "@auth0/auth0-react";
 import { createDispatchHook, useDispatch, useSelector } from "react-redux";
 import { getUser, newUser, postByMail } from "../../Redux/Actions/actions";
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import "./ConfirmData.css"
+import { useAuth } from "../../context/AuthContext";
 
 export const ConfirmData = () => {
 
     const dispatch = useDispatch()
-    const { user } = useAuth0()
+    const { user } = useAuth()
     const usuario = useSelector(state => state.users)
     const filteredUser = usuario?.length > 0 ? usuario?.filter(usr => usr.email == user?.email) : []
     const [nombre, setNombre] = useState("")
@@ -18,7 +19,6 @@ export const ConfirmData = () => {
     const [open, setOpen] = useState(true);
     const [isSubmitting, setIsSubmitting] = useState(false)
     const handleClose = () => setOpen(false);
-
     // const usuarioFinal = usuario?.filter(usr => usr?.email == user?.email)
     
 
@@ -88,12 +88,11 @@ export const ConfirmData = () => {
         borderRadius: "8px"
     };
     
-    console.log(filteredUser)
 
     return (
         <div>
             <Modal
-                open={filteredUser[0]?.verified || user == undefined ? false : open}
+                open={filteredUser[0]?.verified || user == undefined ? false : false}
                 onClose={handleClose}
                 disableEnforceFocus={true}
                 onBackdropClick={true}

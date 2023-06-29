@@ -8,6 +8,7 @@ import { addFav, deleteFavs} from '../../Redux/Actions/actions.js';
 
 import Review from '../Review/Review';
 import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth } from '../../context/AuthContext';
 
 
 
@@ -22,7 +23,7 @@ const Detail = (props) => {
   const productsCart = useSelector(state=> state.shopCart);
   const existProductsCart = productsCart.map(prod => prod.id)
 
-  const {user, isAuthenticated} = useAuth0();
+  const {user} = useAuth();
   const users = useSelector(state=> state?.users);
   const findUser = users?.find(us => us?.email === user?.email)
 
@@ -135,9 +136,9 @@ const increment = () => {
                             <div className='icons'>
 
                               {
-                                !isAuthenticated ? <div></div> :
-                                existFavs.includes(detail.id) ? <BsHeartFill color='red' className='icons-fav' onClick={()=>{handleFav(detail.id)}}/>
-                                : <BsHeartFill color='lightslategray' className='icons-fav' onClick={()=>{handleFav(detail.id)}}/>
+                                user ? existFavs.includes(detail.id) ? <BsHeartFill color='red' className='icons-fav' onClick={()=>{handleFav(detail.id)}}/>
+                                : <BsHeartFill color='lightslategray' className='icons-fav' onClick={()=>{handleFav(detail.id)}}/> :
+                                <div></div>
                               }
                            </div>
                               {/* <div><span>Stock: {detail.stock}</span></div>    
@@ -156,7 +157,7 @@ const increment = () => {
                         {/* <button onClick={()=> handleBuy(detail.id)} type="button" class="btn btn-outline-secondary my-2" style={{width: '15rem'}}>Shop Now</button> */}
 
                         {
-                          !isAuthenticated ? <div></div> : <button type="submit" className="button btn btn-secondary my-2" style={{width: '15rem'}} onClick={()=>{handleCart(detail.id)}}>Add to cart</button>
+                          user ? <button type="submit" className="button btn btn-secondary my-2" style={{width: '15rem'}} onClick={()=>{handleCart(detail.id)}}>Add to cart</button> : <div></div>
                         }
                     </div>
                       

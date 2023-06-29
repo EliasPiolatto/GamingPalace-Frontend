@@ -10,9 +10,10 @@ import Carousel from 'react-bootstrap/Carousel';
 import "./Home.css"
 import React, { useEffect } from "react";
 import { getUser } from "../../Redux/Actions/actions";
-import { useAuth0 } from "@auth0/auth0-react";
+// import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts, getCart, getFavs } from "../../Redux/Actions/actions";
+import { useAuth } from "../../context/AuthContext";
 
 
 
@@ -20,7 +21,10 @@ export const Home = () => {
 
 
     const dispatch = useDispatch();
-    const {user} = useAuth0();
+    const {user} = useAuth();
+
+
+
     const users = useSelector(state=> state?.users);
     const findUser = users.length>0 ? users.find(us => us?.email === user?.email) : null;
 
@@ -32,7 +36,7 @@ export const Home = () => {
     useEffect(()=>{
         dispatch(getCart(findUser?.id))
         dispatch(getFavs(findUser?.id))
-    },[findUser])
+    },[findUser, dispatch])
 
 
 

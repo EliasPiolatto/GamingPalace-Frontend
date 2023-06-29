@@ -1,16 +1,17 @@
-import { useAuth0 } from '@auth0/auth0-react';
+// import { useAuth0 } from '@auth0/auth0-react';
 import { Button } from '@mui/material';
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteAllFavs } from '../../Redux/Actions/actions';
 import CardsFavs from './CardsFavs'
+import { useAuth } from '../../context/AuthContext';
 
 const ListFavs = () => {
 
   const dispatch = useDispatch();
   const favourites = useSelector(state => state.favourites);
 
-  const { user } = useAuth0();
+  const { user } = useAuth();
   const users = useSelector(state => state?.users);
   const findUser = users?.find(us => us?.email === user?.email)
 

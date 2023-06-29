@@ -1,4 +1,4 @@
-import { useAuth0 } from '@auth0/auth0-react';
+// import { useAuth0 } from '@auth0/auth0-react';
 import { Button } from '@mui/material';
 import React, { useEffect } from 'react'
 import { BsEmojiSmileFill } from 'react-icons/bs';
@@ -8,6 +8,7 @@ import { deleteAllCart, getCart, restoreTotalBuy, totalBuy } from '../../Redux/A
 import CardCart from './CardCart';
 import './ShopCart.css'
 import './CardCart.css'
+import { useAuth } from '../../context/AuthContext';
 
 const ShopCart = () => {
 
@@ -21,7 +22,7 @@ const ShopCart = () => {
   const totalBuyOk2 = totalAmounts.length > 1 ? totalAmounts.reduce((acc, curr) => acc + curr) : totalAmounts;
 
 
-  const { user } = useAuth0();
+  const { user } = useAuth();
   const users = useSelector(state => state?.users);
   const findUser = users?.find(us => us?.email === user?.email)
 

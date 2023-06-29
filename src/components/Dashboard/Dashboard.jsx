@@ -4,11 +4,12 @@ import { deepPurple } from '@mui/material/colors';
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import "./Dashboard.css"
-import { useAuth0 } from '@auth0/auth0-react';
+// import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser, updateUser, getAllProducts, getStats, getUserProducts } from '../../Redux/Actions/actions';
 import Swal from "sweetalert2"
 import withReactContent from 'sweetalert2-react-content'
+import { useAuth } from '../../context/AuthContext';
 
 
 export const Dashboard = () => {
@@ -22,10 +23,10 @@ export const Dashboard = () => {
 
     const userProduct = useSelector(state=>state.userProducts)
 
-    const { user } = useAuth0()
+    const { user } = useAuth()
     const usuario = useSelector(state => state.users)
     const filteredUser = usuario.length > 0 && usuario.find(usr => usr.email === user?.email) 
-    const pictureURL = user?.picture
+    const pictureURL = user?.photoURL
     const [name, setName] = useState(filteredUser?.name)
     const [email, setEmail] = useState(filteredUser?.email)
     const [address, setAddress] = useState(filteredUser?.address)
@@ -136,7 +137,7 @@ console.log("estado:" , userProduct)
         <div className='dash_g'>
             <form className="dashboard_container" onSubmit={handleOnSubmit}>
                 <Stack className='dash' direction="column" spacing={2}>
-                    <Avatar sx={{ bgcolor: deepPurple[500], width: 100, height: 100, alignContent: "center" }} src={pictureURL}>GP</Avatar>
+                    <Avatar sx={{ bgcolor: deepPurple[500], width: 100, height: 100, alignContent: "center" }} src={pictureURL}></Avatar>
                     <div>{name}</div>
                     <div className='info_user'></div>
                     <input type="text" value={infoUser.name?.length > -1 ? infoUser.name : name} name="name" onChange={handleOnChange} className="infoUser" />

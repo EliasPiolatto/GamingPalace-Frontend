@@ -1,4 +1,4 @@
-import { useAuth0 } from "@auth0/auth0-react";
+// import { useAuth0 } from "@auth0/auth0-react";
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,11 +14,12 @@ import { SiFacebook } from "react-icons/si";
 import { SiTwitter } from 'react-icons/si'
 import { SiInstagram } from 'react-icons/si'
 import './PurchaseSuccess.css'
+import { useAuth } from "../../context/AuthContext";
 
 export const PurchaseSuccess = () => {
 
     const dispatch = useDispatch()
-    const { user } = useAuth0()
+    const { user } = useAuth()
     
     const compra = useSelector(state => state.totalToPay)
 

@@ -8,7 +8,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { persistor, store } from './Redux/store';
 import Auth0ProviderWithHistory from './Auth0Provider/Auth0Provider';
 import axios from 'axios';
-// axios.defaults.baseURL = 'https://gpback-production.up.railway.app/'
+// axios.defaults.baseURL = 'https://gpback-production.up.railway.app/' //este no!
+// axios.defaults.baseURL = 'http://localhost:3001'
 axios.defaults.baseURL = 'https://gamingpalace-back.onrender.com'
 
 
@@ -22,19 +23,19 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
     <BrowserRouter>
-      <Auth0ProviderWithHistory
+      {/* <Auth0ProviderWithHistory
         domain={domain}
         clientId={clientId}
         authorizationParams={{
           redirect_uri: window.location.origin
         }}
-      >
+      > */}
         <PersistGate loading={null} persistor={persistor}>
 
           <App />
         </PersistGate>
 
-      </Auth0ProviderWithHistory>
+      {/* </Auth0ProviderWithHistory> */}
     </BrowserRouter>
   </Provider>
 

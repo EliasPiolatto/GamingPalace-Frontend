@@ -1,4 +1,4 @@
-import { useAuth0 } from '@auth0/auth0-react'
+// import { useAuth0 } from '@auth0/auth0-react'
 import { Button, ButtonBase } from '@mui/material'
 import React, { useEffect } from 'react'
 import { BsCashCoin, BsTrash } from 'react-icons/bs'
@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { deleteThisOrder, getCart, restoreTotalBuy, sendNMailer, totalBuy } from '../../Redux/Actions/actions'
 import FormAdress from './FormAdress'
 import './OrderList.css'
+import { useAuth } from '../../context/AuthContext'
 
 
 
@@ -18,7 +19,7 @@ const OrderList = () => {
   // const totalBuyOk = totalBuy.length>1 ? totalBuy.reduce((acc, curr)=> acc+curr) : totalBuy;
   const prodsPay = useSelector(state=> state.totalToPay);
 
-const {user} = useAuth0();
+const {user} = useAuth();
 const users = useSelector(state=> state?.users);
 const findUser = users?.find(us => us?.email === user?.email)
 

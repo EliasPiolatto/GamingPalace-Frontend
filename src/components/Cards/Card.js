@@ -4,13 +4,14 @@ import './Card.css'
 import { BsCartFill, BsHeartFill } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCart, addFav, deleteFavs, deleteItemCart, getCart } from '../../Redux/Actions/actions.js';
-import { useAuth0 } from '@auth0/auth0-react';
+// import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth } from '../../context/AuthContext';
 
 
 
 const Card = ({ image, price, name, description, id, stock }) => {
 
-  const { user, isAuthenticated } = useAuth0();
+  const { user } = useAuth();
   const users = useSelector(state => state?.users);
   const findUser = users?.find(us => us?.email === user?.email)
 
@@ -29,7 +30,6 @@ const Card = ({ image, price, name, description, id, stock }) => {
   };
 
 
-  console.log("esto", findUser?.id)
 
   const handleCart = (id) => {
     !existProductsCart.includes(id) ?
@@ -54,16 +54,16 @@ const Card = ({ image, price, name, description, id, stock }) => {
           
 
           { 
-            !isAuthenticated ? <div></div> :
-            existFavs.includes(id) ? <BsHeartFill color='red' className='icons-fav' onClick={()=>{handleFav(id)}}/>
-            : <BsHeartFill className='icons-fav' onClick={()=>{handleFav(id)}}/>
+            user ? existFavs.includes(id) ? <BsHeartFill color='red' className='icons-fav' onClick={()=>{handleFav(id)}}/>
+            : <BsHeartFill className='icons-fav' onClick={()=>{handleFav(id)}}/> :
+            <div></div>
           }     
        
           { 
-            !isAuthenticated ? <div></div> :
-            stock <= 0 ? "Stocked out" :
+            user ? stock <= 0 ? "Stocked out" :
             existProductsCart.includes(id) ? <BsCartFill color='green' className='icons-cart' onClick={()=>{handleCart(id)}}/> : 
-            <BsCartFill className='icons-cart' onClick={()=>{handleCart(id)}}/>
+            <BsCartFill className='icons-cart' onClick={()=>{handleCart(id)}}/> :
+            <div></div>
           } 
           
                    

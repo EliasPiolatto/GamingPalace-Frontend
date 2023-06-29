@@ -3,7 +3,8 @@ import './CardsFavs.css'
 import { deleteFavs } from "../../Redux/Actions/actions";
 import { BsTrashFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
+// import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth } from "../../context/AuthContext";
 
 
 const CardsFavs = () => {
@@ -11,7 +12,7 @@ const CardsFavs = () => {
   const favourites = useSelector(state => state.favourites);
   const dispatch = useDispatch();
 
-  const { user } = useAuth0();
+  const { user } = useAuth();
   const users = useSelector(state => state?.users);
   const findUser = users?.find(us => us?.email === user?.email)
 

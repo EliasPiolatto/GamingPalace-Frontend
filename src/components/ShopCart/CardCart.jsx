@@ -1,4 +1,4 @@
-import { useAuth0 } from '@auth0/auth0-react';
+// import { useAuth0 } from '@auth0/auth0-react';
 import React, { useState } from 'react'
 import { BsTrash2Fill } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux'
@@ -6,12 +6,13 @@ import { deleteItemCart, getCart, totalBuy, totalToPay, updateQtyCart }
 from '../../Redux/Actions/actions';
 import { BiCaretDown, BiCaretUp, BiTrash} from "react-icons/bi";
 import './CardCart.css'
+import { useAuth } from '../../context/AuthContext';
 
 const CardCart = ({image, name, price, stock, id}) => {
 
 const dispatch = useDispatch();
 
-const {user} = useAuth0();
+const {user} = useAuth();
 const users = useSelector(state=> state?.users);
 const findUser = users?.find(us => us?.email === user?.email)
 

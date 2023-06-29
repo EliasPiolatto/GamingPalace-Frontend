@@ -1,4 +1,4 @@
-import { useAuth0 } from '@auth0/auth0-react';
+// import { useAuth0 } from '@auth0/auth0-react';
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import { BsChevronDoubleLeft, BsChevronDoubleRight } from 'react-icons/bs';
@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { deleteItemCart, getAllProducts, totalPayment, changeStock, restoreTotalBuy, successBuy } from '../../Redux/Actions/actions';
 import './OrderList.css'
+import { useAuth } from '../../context/AuthContext';
 
 function validateForm(input){
     const error = {};
@@ -19,7 +20,7 @@ function validateForm(input){
 
 const FormAdress = ({name, address}) => {
 
-  const {user} = useAuth0();
+  const {user} = useAuth();
   const users = useSelector(state=> state?.users);
   const findUser = users?.find(us => us?.email === user?.email);
   const dispatch = useDispatch();

@@ -27,15 +27,20 @@ import Sales from './components/AdminDashboard/Sales'
 
 import ProductsTable from './components/AdminDashboard/ProductsTable';
 import AddProduct from './components/AdminDashboard/AddProduct/AddProduct';
-
+import Login from './components/FormLogin/FormFirebase';
+//Firebase
+import { AuthProvider } from '../src/context/AuthContext';
 
 
 function App() {
   return (
+    <AuthProvider>
     <div className="App">
       <Navbar />
       <Routes>
 
+
+        <Route exact path="/login" element={<Login/>}/>
         <Route exact path="/showorder" element={<OrderList/>}/>
       
         <Route exact path='/productform' element={<AddProduct/>}/>
@@ -76,6 +81,7 @@ function App() {
       </Routes>
       <Footer />
     </div>
+    </AuthProvider>
   );
 };
 
