@@ -33,8 +33,8 @@ const Card = ({ image, price, name, description, id, stock }) => {
 
   const handleCart = (id) => {
     !existProductsCart.includes(id) ?
-      dispatch(addCart({ userid: findUser?.id, idproduct: id, quantity: 1 })) && setTimeout(() => { dispatch(getCart(findUser?.id)) }, 100) :
-      dispatch(deleteItemCart({ userid: findUser?.id, idproduct: id })) && setTimeout(() => { dispatch(getCart(findUser?.id)) }, 100)
+      dispatch(addCart({ userid: findUser?.id, idproduct: id, quantity: 1 })) && dispatch(getCart(findUser?.id))  :
+      dispatch(deleteItemCart({ userid: findUser?.id, idproduct: id })) && dispatch(getCart(findUser?.id))
   };
 
 
