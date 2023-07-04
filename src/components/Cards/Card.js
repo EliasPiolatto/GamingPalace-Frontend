@@ -29,12 +29,13 @@ const Card = ({ image, price, name, description, id, stock }) => {
       dispatch(deleteFavs({ userId: findUser?.id, productId: id }))
   };
 
-
+//add && dispatch(getCart(findUser?.id))
+//delete && dispatch(getCart(findUser?.id))
 
   const handleCart = (id) => {
     !existProductsCart.includes(id) ?
-      dispatch(addCart({ userid: findUser?.id, idproduct: id, quantity: 1 })) && dispatch(getCart(findUser?.id)) :
-      dispatch(deleteItemCart({ userid: findUser?.id, idproduct: id })) && dispatch(getCart(findUser?.id))
+      dispatch(addCart({ userid: findUser?.id, idproduct: id, quantity: 1 }))  :
+      dispatch(deleteItemCart({ userid: findUser?.id, idproduct: id })) 
   };
 
 
