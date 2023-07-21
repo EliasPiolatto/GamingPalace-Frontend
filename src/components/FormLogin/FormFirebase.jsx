@@ -84,9 +84,9 @@ function handleRegister(e) {
     const respGoogle = await auth.loginWithGoogle();
     dispatch(getUser());
       if(respGoogle.operationType === "signIn") {
-        setUserInfo({...userInfo, name: respGoogle.user.displayName, email: respGoogle.user.email})
-        redirectLogin(respGoogle.user)
-      }
+        setUserInfo({...userInfo, name: respGoogle.user.displayName, email: respGoogle.user.email});
+        redirectLogin(respGoogle.user);
+      };
   };
   
   

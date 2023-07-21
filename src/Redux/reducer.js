@@ -1,6 +1,6 @@
 
 
-import {GET_USER_PRODUCTS, GET_ALL_PRODUCTS, GET_BY_MONTH, GET_BY_YEAR, CHANGE_PRODUCT, GET_DETAIL,GET_STATS, POST_NEW_PRODUCT, ADD_FAV, GET_CART, GET_ALL_CATEGORIES, DELETE_FAV, GET_PRODUCT_FILTER, DELETE_CART, TOTAL_BUY, RESTORE_TOTAL_BUY, NEW_REVIEW, SET_LOADING, GET_USERS, GET_USER, GET_USER_BY_MAIL, TOTAL_TO_PAY, GET_FAVS, DELETE_ALL_FAVS, DELETE_ALL_CART, DELETE_THIS_ORDER, DELETE_PROD_PAYED } from "./Actions/constants";
+import {GET_USER_PRODUCTS, GET_ALL_PRODUCTS, GET_BY_MONTH, GET_BY_YEAR, CHANGE_PRODUCT, GET_DETAIL,GET_STATS, POST_NEW_PRODUCT, ADD_FAV, ADD_CART, GET_CART, GET_ALL_CATEGORIES, DELETE_FAV, GET_PRODUCT_FILTER, DELETE_CART, TOTAL_BUY, RESTORE_TOTAL_BUY, NEW_REVIEW, SET_LOADING, GET_USERS, GET_USER, GET_USER_BY_MAIL, TOTAL_TO_PAY, GET_FAVS, DELETE_ALL_FAVS, DELETE_ALL_CART, DELETE_THIS_ORDER, DELETE_PROD_PAYED } from "./Actions/constants";
 
 
 
@@ -91,6 +91,13 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         favourites: [...state.favourites, addFav]
       };
+
+      case ADD_CART:
+        const addCart = state.allProducts.find(prod => prod.id === action.payload)
+        return {
+          ...state,
+          shopCart: [...state.shopCart, addCart]
+        };
 
     case GET_CART:
       const prodsInCart = []

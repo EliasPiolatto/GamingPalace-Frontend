@@ -304,9 +304,12 @@ export function setLoading(payload) {
 
 
 export const addCart = (product) => {
-	return async () => {
+	return async (dispatch) => {
 		await axios.post(`/addproduct`, product);
-		
+		return dispatch({
+			type: ADD_CART,
+			payload: product.idproduct,
+		});
 	};
 };
 
@@ -328,9 +331,12 @@ export const getCart = (id) => {
 }
 
 export const deleteItemCart = (product) => {
-	return async () => {
+	return async (dispatch) => {
 		await axios.post(`/deleteproduct`, product);
-		
+		return dispatch({
+			type: DELETE_CART,
+			payload: product.idproduct
+		})
 	};
 };
 
