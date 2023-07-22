@@ -44,8 +44,9 @@ export function AuthProvider({ children }) {
         return await signInWithPopup(auth, responseGoogle)
     };
     const logout = async () => {
-        const response = await signOut(auth)
-        console.log(response)
+        const response = await signOut(auth);
+        console.log(response);
+        window.location = "/home";
     };
 
     return <authContext.Provider

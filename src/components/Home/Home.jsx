@@ -40,7 +40,7 @@ export const Home = () => {
 
 
 
-    // console.log(persistorState);
+    console.log("usuarios DB" ,users);
 
 
 
