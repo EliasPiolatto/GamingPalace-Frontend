@@ -9,8 +9,8 @@ import { persistor, store } from './Redux/store';
 import Auth0ProviderWithHistory from './Auth0Provider/Auth0Provider';
 import axios from 'axios';
 // axios.defaults.baseURL = 'https://gpback-production.up.railway.app/' //este no!
-axios.defaults.baseURL = 'http://localhost:3001'
-// axios.defaults.baseURL = 'https://gamingpalace-back.onrender.com'
+// axios.defaults.baseURL = 'http://localhost:3001'
+axios.defaults.baseURL = 'https://gamingpalace-back.onrender.com'
 
 
 
