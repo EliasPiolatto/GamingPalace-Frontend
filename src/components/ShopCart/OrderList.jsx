@@ -34,8 +34,8 @@ useEffect(()=>{
   }
   
   
-console.log("totalBuy",totalBuyOk )
-console.log("prodsPay", prodsPay)
+// console.log("totalBuy",totalBuyOk )
+// console.log("prodsPay", prodsPay)
 
 // console.log("totalBuyOK",totalBuyOk )
 

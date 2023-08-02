@@ -68,8 +68,8 @@ const FormAdress = ({name, address}) => {
       dispatch(getAllProducts())
       setTimeout(()=>{setOrderOK(false)}, 5000)
     }
-console.log("jarana", prodsToPay)
-console.log("changestock", changestock)
+// console.log("jarana", prodsToPay)
+// console.log("changestock", changestock)
     const handleConfirm = () => {
       if(!prodsToPay.length>0) return setTimeout((alert("Add products to pay")), window.location = "/products", 2000) ;
       if(!input.name || !input.adress.length>0 || !input.city || !input.postalCode) return alert('Complete all fields');    
@@ -79,8 +79,8 @@ console.log("changestock", changestock)
     // console.log(prodsToPay, "payyyyy")
     // console.log("deletePay", deleteItemsPayed)
     // console.log(orderOK, "orderrrrr")
-    console.log("este es mi user", findUser)
-    console.log("este es mi user google", findUser)
+    // console.log("este es mi user", findUser)
+    // console.log("este es mi user google", findUser)
   return (
     // <div style={{minHeight:"100vh", display:"flex", justifyContent: "center", color:"white"}}>FormAdress</div>
     <div >
