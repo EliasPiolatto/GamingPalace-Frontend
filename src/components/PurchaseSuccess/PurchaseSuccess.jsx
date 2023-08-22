@@ -41,7 +41,7 @@ export const PurchaseSuccess = () => {
         cantidades?.push(element?.price * element?.quantity)
     });
 
-    const total = cantidades.reduce((value, prev) => value + prev)
+    const total = cantidades?.reduce((value, prev) => value + prev)
 
     useEffect(() => {
         dispatch(getUser())

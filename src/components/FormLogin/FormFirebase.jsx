@@ -10,6 +10,8 @@ const FormFirebase = () => {
   const user = auth.user;
   const usuario = useSelector((state) => state.users);
   const oneUserCreated = useSelector((state) => state.user);
+  console.log(oneUserCreated, "esto es el oneCreated")
+
 
   // Para el registro
   const [emailRegister, setEmailRegister] = useState('');
@@ -95,10 +97,11 @@ const FormFirebase = () => {
           name: userGoogle.displayName,
           email: userGoogle.email,
         })
-      );
+        );
+      dispatch(getUser());
 
-      if (oneUserCreated) {
-        dispatch(getUser());
+      if (oneUserCreated.email) {
+        console.log(oneUserCreated, "esto es el oneCreated")
         window.location.href = '/home';
       }
     }

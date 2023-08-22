@@ -39,8 +39,8 @@ export function AuthProvider({ children }) {
         console.log(response);
         return response.operationType === "signIn" ? true : false
     };
+    const responseGoogle = new GoogleAuthProvider()
     const loginWithGoogle = async () => {
-        const responseGoogle = new GoogleAuthProvider()
         return await signInWithPopup(auth, responseGoogle)
     };
     const logout = async () => {
