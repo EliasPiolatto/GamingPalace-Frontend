@@ -25,29 +25,17 @@ const UsersPanel = () => {
     let findUser = user?.find(e => e.id === id)
     findUser.role = findUser?.role=== "admin" ? "customer" : "admin" 
     dispatch(updateUser(findUser))
-    console.log(findUser)
     dispatch(getUser())
-  }
-
-  console.log(user)
-
-
+  };
 
   const changeDisabled = (id) => {
     let findUser = user?.find(e => e?.id === id)
     findUser.disabled = findUser?.disabled === false ? true : false
     dispatch(updateUser(findUser))
-    console.log(findUser)
     dispatch(getUser())
-  }
+  };
 
  
-
-
-  // const Fecha = new Date()
-  // console.log(Fecha)
-  
-  
 
   return (
     <div className="Q">

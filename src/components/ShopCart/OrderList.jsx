@@ -21,24 +21,18 @@ const OrderList = () => {
 
 const {user} = useAuth();
 const users = useSelector(state=> state?.users);
-const findUser = users?.find(us => us?.email === user?.email)
+const findUser = users?.find(us => us?.email === user?.email);
 
 useEffect(()=>{
   dispatch(getCart(findUser?.id))
   dispatch(totalBuy())
-},[dispatch])
+},[dispatch]);
   
   
   const sendEmail = () => {
     dispatch(sendNMailer({destiny: "eliaspiolatto77@hotmail.com", prodsPay: prodsPay}))
-  }
+  };
   
-  
-// console.log("totalBuy",totalBuyOk )
-// console.log("prodsPay", prodsPay)
-
-// console.log("totalBuyOK",totalBuyOk )
-
   return (
     <div className='order-list'>
 

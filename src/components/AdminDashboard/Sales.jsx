@@ -28,17 +28,13 @@ const Sales = () => {
     event.preventDefault()
     setInput(event.target.value);
     // dispatch(getByYear(event.target.value))
-    console.log("EL INPUT ES")
-    console.log(event.target.value)
   };
 
   const handleChangeMonth = (event) => {
     event.preventDefault()
     setInput(event.target.value)
     // dispatch(getByMonth(event.target.value))
-    console.log("EL OTRO INPUT ES")
-    console.log(event.target.value)
-  }
+  };
 
    
 
@@ -47,8 +43,6 @@ const Sales = () => {
   let años = [2019, 2020, 2021, 2022, 2023]
 
   
-// console.log(sales)
-
   useEffect(() => {
     dispatch(getAllProducts())
     dispatch(getStats())
@@ -94,10 +88,6 @@ const Sales = () => {
      /////////====================================================================================//////////////// 
 
 
-  // console.log("stats con ss:", statss())
-  console.log("stats:", stats)
-  // console.log("salesY:", salesY)
-  // console.log("sales:", sales)
     
 
     return (

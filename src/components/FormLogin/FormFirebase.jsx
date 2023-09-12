@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Google } from "@mui/icons-material";
 import { useAuth } from '../../context/AuthContext';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser, loginUser, newUser } from '../../Redux/Actions/actions';
@@ -10,7 +13,6 @@ const FormFirebase = () => {
   const user = auth.user;
   const usuario = useSelector((state) => state.users);
   const oneUserCreated = useSelector((state) => state.user);
-  console.log(oneUserCreated, "esto es el oneCreated")
 
 
   // Para el registro
@@ -44,12 +46,12 @@ const FormFirebase = () => {
     e.preventDefault();
     const validRegister = usuario?.filter((usr) => usr.email === emailRegister);
     if (validRegister?.length > 0) {
-      return alert('Usuario existente');
+      return toast.warn('Usuario existente');
     }
 
     await auth.register(emailRegister, passwordRegister);
     dispatch(newUser(userInfo));
-    alert('Usuario registrado correctamente');
+    toast.success('Usuario registrado correctamente');
     window.location = '/home';
   }
 
@@ -61,14 +63,13 @@ const FormFirebase = () => {
     if (matchEmail?.email) {
       const respLogin = await auth.login(email, password);
 
-      if (respLogin) {
+      if (respLogin !== false) {
         dispatch(getUser());
         window.location.href = '/home';
       }
-    } else {
-      alert('Usuario o contraseña incorrectos');
     }
-  }
+    else toast.error('Usuario o contraseña incorrectos');
+  };
 
   async function handleGoogle(e) {
     e.preventDefault();
@@ -101,8 +102,8 @@ const FormFirebase = () => {
       dispatch(getUser());
 
       if (oneUserCreated.email) {
-        console.log(oneUserCreated, "esto es el oneCreated")
         window.location.href = '/home';
+        toast.success('Usuario registrado correctamente');
       }
     }
   }
@@ -117,11 +118,25 @@ const FormFirebase = () => {
     }));
   }
 
+  const [showLoginForm, setShowLoginForm] = useState(true);
+  const [showRegisterForm, setShowRegisterForm] = useState(false);
+
+  const toggleLoginForm = () => {
+    setShowLoginForm(true);
+    setShowRegisterForm(false);
+  };
+
+  const toggleRegisterForm = () => {
+    setShowLoginForm(false);
+    setShowRegisterForm(true);
+  };
+
   return (
     <div className="form-login-container">
-      <div className="form-register">
-        <form>
           {/* ===================Register================== */}
+      <div className={showRegisterForm ? "show-register-form" : "form-register"}>
+        {/* <div className="form-register"> */}
+        <form>
           <h3 className="tittle-h3">Register</h3>
           <div className="mb-3">
             <label htmlFor="nameInput" className="form-label">
@@ -171,14 +186,17 @@ const FormFirebase = () => {
               Submit
             </button>
             <button className="btn-submit" onClick={handleGoogle}>
-              Google
+              {<Google/>}
             </button>
           </div>
         </form>
+      {/* </div> */}
       </div>
+      
 
       {/* ===============Login====================== */}
-      <div className="form-login">
+      <div className={showLoginForm ? "show-login-form" : "form-login"}>
+        {/* <div className="form-login"> */}
         <form>
           <h3 className="tittle-h3">Login</h3>
           <div className="mb-3">
@@ -214,10 +232,23 @@ const FormFirebase = () => {
               Submit
             </button>
             <button className="btn-submit" onClick={handleGoogle}>
-              Google
+            {<Google/>}
             </button>
           </div>
         </form>
+      {/* </div> */}
+      </div>
+      <div className="btns-reg-log">
+        <button className="btn-submit" onClick={toggleRegisterForm}>
+          Register
+        </button>
+        <button className="btn-submit" onClick={toggleLoginForm}>
+          Login
+        </button>
+        <ToastContainer
+        position="top-center"
+        closeOnClick
+        />
       </div>
     </div>
   );
@@ -251,7 +282,6 @@ export default FormFirebase;
 
 // const FormFirebase = () => {
 //   const auth = useAuth();
-//   // console.log(auth.user,"user firebase")
 
 //   const dispatch = useDispatch();
 //   const user = auth.user;
@@ -260,7 +290,6 @@ export default FormFirebase;
 //   // const filteredUser = usuario?.length > 0 ? usuario?.filter(usr => usr.email === user?.email) : [];
 //   const [nombreToDB, setNombreToDB] = useState("");
 //   const [emailToDB, setEmailToDB] = useState("");
-// // console.log("usuarios actuales", usuario)
 
 // //Para el register
 // const [emailRegister, setEmailRegister] = useState("");

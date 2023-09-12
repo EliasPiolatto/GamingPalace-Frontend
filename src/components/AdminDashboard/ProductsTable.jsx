@@ -51,7 +51,6 @@ function ProductsTable() {
           order: order
       }
       dispatch(getArray(obj))
-      console.log(obj)
   }
 
   const resetFilters = () => {
@@ -90,10 +89,7 @@ function ProductsTable() {
 
     dispatch(changeProduct(inputd))
     dispatch(getAllProducts())
-    console.log("INPUTD ES:")
-    console.log(inputd)
-  
-  }
+  };
 
   
 
@@ -164,8 +160,7 @@ function ProductsTable() {
     namedisplay: elemento.namedisplay})
 
     setModalEditar(true)
-  }
-    // console.log(product)
+  };
 
 
   //////////////////////////////////////// Cloudinary
@@ -191,7 +186,6 @@ function ProductsTable() {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           setinput({
             ...input,
             imageurl: data.url,
@@ -202,8 +196,6 @@ function ProductsTable() {
           console.log(error);
         });
     };
-    // console.log("INPUT ES");
-    // console.log(input);
     
 
   return (

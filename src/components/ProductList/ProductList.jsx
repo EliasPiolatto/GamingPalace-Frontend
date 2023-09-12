@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import 'react-multi-carousel/lib/styles.css';
 // import icono1 from "../../image/imgCarrusel/logo1.png";
@@ -12,6 +12,7 @@ import { useAuth } from '../../context/AuthContext';
 
 const ProductList = () => {
   
+  const [isLoading, setIsLoading] = useState(true);
 
   const dispatch = useDispatch()
   const products = useSelector((state) => state.allProducts)
@@ -21,13 +22,16 @@ const ProductList = () => {
   const findUser = users > 0 ? users?.find(us => us?.email === user?.email) : []
 
   useEffect(() => {
-    dispatch(getAllProducts())
-    dispatch(getCart(findUser?.id))
-    dispatch(getUser())
-    dispatch(getFavs(findUser?.id))
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+    dispatch(getAllProducts());
+    dispatch(getCart(findUser?.id));
+    dispatch(getUser());
+    dispatch(getFavs(findUser?.id));
+    return () => clearTimeout(timer);
   },[dispatch])
-  
-  
+
   return (
     <div className='background'>   
             <h1 className='name_prod'>Products</h1>
@@ -38,8 +42,9 @@ const ProductList = () => {
     <Searchbar/>
       
 
-      <ContainerCards 
-      products={products}/>
+      {isLoading ? <div className="loader"></div> :
+       <ContainerCards 
+      products={products}/>}
     </div>
 
     </div>

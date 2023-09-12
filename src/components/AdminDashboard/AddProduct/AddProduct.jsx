@@ -32,8 +32,6 @@ export default function AddProduct() {
     imageurl: "",
     stock: ""
   });
-  console.log("IMAGEURL: ");
-  console.log(input.imageurl);
 
   const handleChange = (e) => {
     setInput({
@@ -63,15 +61,13 @@ export default function AddProduct() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(input);
     setErrors(
       validator({
         ...input,
         [e.target.name]: e.target.value,
       })
     );
-
-}
+};
 
 
 const valModal =() =>{
@@ -121,7 +117,6 @@ const valModal =() =>{
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setInput({
           ...input,
           imageurl: data.url,
@@ -132,10 +127,6 @@ const valModal =() =>{
         console.log(error);
       });
   };
-  console.log("INPUT ES");
-  console.log(input);
-
-
 
   return (
     <div>

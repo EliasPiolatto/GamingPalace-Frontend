@@ -79,7 +79,6 @@ const Detail = (props) => {
 
 
 const prodsPay = useSelector(state=> state.totalToPay);
-console.log("prodsPay", prodsPay)
 
 const decrement = () => {
   if(input > 0) setInput(input -1)

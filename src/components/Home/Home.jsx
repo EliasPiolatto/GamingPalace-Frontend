@@ -38,12 +38,6 @@ export const Home = () => {
         dispatch(getFavs(findUser?.id))
     },[findUser, dispatch])
 
-
-
-    console.log("usuarios DB" ,users);
-
-
-
     return (
 
         <div className="containerGeneral">

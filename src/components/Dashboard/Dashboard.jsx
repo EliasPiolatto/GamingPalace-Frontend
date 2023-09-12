@@ -119,20 +119,8 @@ export const Dashboard = () => {
    
 // }}
 
-//       console.log("funcion1:", funcion1())   
-    
-    // console.log("Historiccarts:",filteredUser[0]?.Historiccarts?.Historicproducts)
 
-   
-    // console.log("usuario:", usuario)
-     
-    // console.log("carrito:", carritoUsuario)
-    // console.log("productos:", products)
 
-    // console.log(filteredUser)
-
-console.log("estado:" , userProduct)
-    
     return (
         <div className='dash_g'>
             <form className="dashboard_container" onSubmit={handleOnSubmit}>

@@ -57,10 +57,7 @@ export const PurchaseSuccess = () => {
             prodsPay: compra
         }))
         }, 2000)
-    }, [email, compra, dispatch])
-
-
-    console.log("este es el id", findUser?.id)
+    }, [email, compra, dispatch]);
 
     const deleteAll = () => {
         dispatch(changeStock(changestock))
@@ -69,9 +66,8 @@ export const PurchaseSuccess = () => {
         dispatch(restoreTotalBuy())
         window.location = "/home"
         
-    }
+    };
 
-    console.log(deleteItemsPayed, email)
 
     return (
         <div className="purchase_container_success">

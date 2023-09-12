@@ -17,7 +17,6 @@ useEffect(()=>{
 },[dispatch])
 
 
-console.log(users,"users landing")
   return (
     <div id={styles.background}>
       <ConfirmData/>

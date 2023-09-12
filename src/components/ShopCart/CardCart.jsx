@@ -52,11 +52,7 @@ const handleBuy = () => {
     setInput(0)
   } 
   else return alert(`Wrong value. Available stock (${stock})`)
-}
-
-// console.log("input", input)
-// console.log("aca esta el findddd", findProd)
-// console.log("prodsPay", prodsPay)
+};
 
   return (
     <div className='cards-cart-cont'>

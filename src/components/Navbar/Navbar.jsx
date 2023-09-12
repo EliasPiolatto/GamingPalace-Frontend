@@ -38,11 +38,8 @@ const Navbar = () => {
     const linkLogo = {
         "text-decoration": "none",
         "color": "#95c827",
-    }
+    };
 
-
-    // console.log(user.emailVerified, "anonymous");
-    // console.log(user,"usuario...")
 
     return (
         <nav className="navbarContainer">

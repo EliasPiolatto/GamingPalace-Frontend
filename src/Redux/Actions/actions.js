@@ -232,7 +232,6 @@ export const getDetail = (id) => {
 	return async (dispatch) => {
 		 axios.get(`/products/${id}`).then((x) => {
 			console.log("el response del review es este...")
-		console.log(x)
 		return dispatch({
 			type: GET_DETAIL,
 			payload: x.data, 

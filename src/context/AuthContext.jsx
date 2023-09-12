@@ -32,12 +32,13 @@ export function AuthProvider({ children }) {
 
     const register = async (email, password) => {
         const response = await createUserWithEmailAndPassword(auth, email, password);
-        console.log(response);
+        // console.log(response);
     };
     const login = async (email, password) => {
         const response = await signInWithEmailAndPassword(auth, email, password);
-        console.log(response);
-        return response.operationType === "signIn" ? true : false
+        // console.log(response);
+        const toRteurn = response.operationType === "signIn" ? true : false;
+        return toRteurn;
     };
     const responseGoogle = new GoogleAuthProvider()
     const loginWithGoogle = async () => {
@@ -45,7 +46,7 @@ export function AuthProvider({ children }) {
     };
     const logout = async () => {
         const response = await signOut(auth);
-        console.log(response);
+        // console.log(response);
         window.location = "/home";
     };
 

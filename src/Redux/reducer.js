@@ -64,15 +64,12 @@ const rootReducer = (state = initialState, action) => {
 
 
     case GET_DETAIL:
-    console.log("entrando a reducer get detail , action. payload es ...")
-    console.log(action.payload)  
     return {
-        
         ...state, details: action.payload,
       };
 
     case GET_PRODUCT_FILTER:
-      return { ...state, allProducts: action.payload }
+      return { ...state, allProducts: action.payload };
 
 
     case POST_NEW_PRODUCT:

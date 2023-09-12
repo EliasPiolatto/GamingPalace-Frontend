@@ -59,9 +59,8 @@ const handlePlaceHolder = () => {
 
 const dispatch = useDispatch();
 
-const detail = useSelector((state) => state.details)
+const detail = useSelector((state) => state.details);
 
-console.log("detalle : ", detail)
 
 const [input, setInput] = useState({
     author: "",
@@ -69,7 +68,7 @@ const [input, setInput] = useState({
     description:"",
     productId: detail.id,
     rating: number,
-})
+});
 
 
 
@@ -83,17 +82,15 @@ const handleChange = ((e)=>{
 
     });
   
-})
-console.log(input)
+});
 
 
 const funcionCorneta= ((e)=>{
   alert(detail.reviews)
-})
+});
 
 const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(input)
     if (input.author.length>0){
      dispatch(newReview(input));
     setInput({
@@ -103,7 +100,10 @@ const handleSubmit = (e) => {
       rating: number,
       productId: detail.id,
       // userId: "",
-    });  window.location.reload(true);
+    });  
+    setNumber(0);
+    setHoverStar(undefined)
+    window.location.reload(true);
     } else
     Swal.fire({
       icon: 'error',
@@ -111,9 +111,6 @@ const handleSubmit = (e) => {
       text: 'Please enter a name author!',
       timer: 1600
     })
-   
-    console.log("despachando creacion")
-    console.log(input)
 };
 
   // useEffect(() => { 
@@ -145,11 +142,26 @@ const handleSubmit = (e) => {
           <div className='containerRate'>
               <h1>How pleased are you with the product?</h1>
               <div className="textNstars">
-                      <div className="stars">
+              <div className="stars">
+                {Array(5).fill().map((_, index) => (
+                  <span
+                    key={index}
+                    onMouseOver={() => !number && setHoverStar(index + 1)}
+                    onMouseLeave={() => setHoverStar(undefined)}
+                    onClick={() => setNumber(index + 1)}
+                  >
+                    {number >= index + 1 || hoverStar >= index + 1 ? (
+                      <AiFillStar style={{ color: "orange" }} />
+                      ) : (
+                      <AiOutlineStar style={{ color: "orange" }} />
+                      )}
+                  </span>
+                ))}
+              </div>
+
+                      {/* <div className="stars">
                       
-                        {Array(5)
-                          .fill()
-                          .map((_, index) =>
+                        {Array(5).fill().map((_, index) =>                                                   
                               number >= index + 1 || hoverStar >= index + 1 ? (
                               <AiFillStar
                                   onMouseOver={() => !number && setHoverStar(index + 1)}
@@ -167,7 +179,7 @@ const handleSubmit = (e) => {
                           )
                       )}
 
-                      </div>
+                      </div> */}
 
                       <h4 className="textR">{handleText()}</h4>
 
@@ -187,7 +199,7 @@ const handleSubmit = (e) => {
           </div>
 
           <div>
-            <button type="submit" id="createreview" name= "createreview" value="createreview" className='createreview'   >Submit</button>
+            <button type="submit" id="createreview" name= "createreview" value="createreview" className='createreview'>Submit</button>
           </div>
           </div>
         </div>
@@ -205,7 +217,7 @@ const handleSubmit = (e) => {
                             <div className='authorNstars'>
                             <TbUserCircle className='iconUser'/><h5 item key={review.author}>{review.author}</h5> 
                               <div className='starsReview'>{
-                                [... new Array(5)].map((star, index)=>{
+                                [...new Array(5)].map((star, index)=>{
                                     return index < review.rating ? <AiFillStar  style={{ color: "orange" }}/> : <AiOutlineStar  style={{ color: "orange" }} key={review.rating}/>
                                 })}
                               </div>
@@ -226,4 +238,4 @@ const handleSubmit = (e) => {
   )
 };
 
-export default Review
+export default Review;
